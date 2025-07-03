@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox X-Ray ESP Script with Golden Glow</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .code-container {
+            font-family: 'JetBrains Mono', monospace;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+        .golden-glow {
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5), 0 0 40px rgba(255, 215, 0, 0.3);
+        }
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+        }
+        pre {
+            scrollbar-width: thin;
+            scrollbar-color: #ffd700 #2d3748;
+        }
+        pre::-webkit-scrollbar {
+            width: 8px;
+        }
+        pre::-webkit-scrollbar-track {
+            background: #2d3748;
+        }
+        pre::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #ffd700, #ffed4e);
+            border-radius: 4px;
+        }
+        .syntax-keyword { color: #ff79c6; }
+        .syntax-string { color: #f1fa8c; }
+        .syntax-comment { color: #6272a4; font-style: italic; }
+        .syntax-function { color: #50fa7b; }
+        .syntax-number { color: #bd93f9; }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
+                <i class="fas fa-eye mr-3"></i>Roblox X-Ray ESP Script
+            </h1>
+            <p class="text-gray-300 text-lg">Golden Glowing ESP with X-Ray Vision</p>
+            <div class="mt-4 flex justify-center space-x-4">
+                <span class="px-3 py-1 bg-yellow-600 rounded-full text-sm font-medium">
+                    <i class="fas fa-search-plus mr-1"></i>X-Ray Vision
+                </span>
+                <span class="px-3 py-1 bg-yellow-600 rounded-full text-sm font-medium">
+                    <i class="fas fa-users mr-1"></i>ESP Functionality
+                </span>
+                <span class="px-3 py-1 bg-yellow-600 rounded-full text-sm font-medium">
+                    <i class="fas fa-star mr-1"></i>Golden Glow
+                </span>
+            </div>
+        </div>
+
+        <!-- Warning Notice -->
+        <div class="bg-red-900 border border-red-700 rounded-lg p-4 mb-6">
+            <div class="flex items-center">
+                <i class="fas fa-exclamation-triangle text-red-400 mr-3"></i>
+                <div>
+                    <h3 class="font-bold text-red-300">Important Notice</h3>
+                    <p class="text-red-200 text-sm mt-1">This script is for educational purposes only. Using exploits in Roblox may result in account termination. Use at your own risk and respect game rules.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="grid md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-gray-800 rounded-lg p-6 border border-yellow-600 golden-glow">
+                <i class="fas fa-eye text-yellow-400 text-2xl mb-3"></i>
+                <h3 class="text-xl font-bold mb-2 text-yellow-400">X-Ray Vision</h3>
+                <p class="text-gray-300">See players through walls and obstacles with transparency effects</p>
+            </div>
+            <div class="bg-gray-800 rounded-lg p-6 border border-yellow-600 golden-glow">
+                <i class="fas fa-crosshairs text-yellow-400 text-2xl mb-3"></i>
+                <h3 class="text-xl font-bold mb-2 text-yellow-400">ESP Boxes</h3>
+                <p class="text-gray-300">Highlight players with golden glowing boxes and distance indicators</p>
+            </div>
+            <div class="bg-gray-800 rounded-lg p-6 border border-yellow-600 golden-glow">
+                <i class="fas fa-cog text-yellow-400 text-2xl mb-3"></i>
+                <h3 class="text-xl font-bold mb-2 text-yellow-400">Customizable</h3>
+                <p class="text-gray-300">Toggle features on/off and adjust colors and transparency</p>
+            </div>
+        </div>
+
+        <!-- Script Container -->
+        <div class="bg-gray-800 rounded-lg border border-yellow-600 golden-glow overflow-hidden">
+            <div class="bg-gradient-to-r from-yellow-600 to-yellow-700 px-6 py-4 flex justify-between items-center">
+                <div class="flex items-center">
+                    <i class="fas fa-code text-white mr-3"></i>
+                    <h2 class="text-xl font-bold text-white">Roblox X-Ray ESP Script</h2>
+                </div>
+                <button id="copyBtn" class="copy-btn bg-white text-yellow-700 px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-yellow-100">
+                    <i class="fas fa-copy mr-2"></i>Copy Script
+                </button>
+            </div>
+            
+            <div class="code-container p-6">
+                <pre id="scriptCode" class="text-sm leading-relaxed overflow-x-auto"><code>-- Roblox X-Ray ESP Script with Golden Glow
+-- Created for educational purposes only
+
+<span class="syntax-keyword">local</span> Players = game:GetService(<span class="syntax-string">"Players"</span>)
+<span class="syntax-keyword">local</span> RunService = game:GetService(<span class="syntax-string">"RunService"</span>)
+<span class="syntax-keyword">local</span> UserInputService = game:GetService(<span class="syntax-string">"UserInputService"</span>)
+
+<span class="syntax-keyword">local</span> LocalPlayer = Players.LocalPlayer
+<span class="syntax-keyword">local</span> Camera = workspace.CurrentCamera
+
+<span class="syntax-comment">-- Configuration</span>
+<span class="syntax-keyword">local</span> ESP_ENABLED = <span class="syntax-keyword">true</span>
+<span class="syntax-keyword">local</span> XRAY_ENABLED = <span class="syntax-keyword">true</span>
+<span class="syntax-keyword">local</span> ESP_COLOR = Color3.fromRGB(<span class="syntax-number">255</span>, <span class="syntax-number">215</span>, <span class="syntax-number">0</span>) <span class="syntax-comment">-- Golden color</span>
+<span class="syntax-keyword">local</span> ESP_TRANSPARENCY = <span class="syntax-number">0.7</span>
+<span class="syntax-keyword">local</span> GLOW_INTENSITY = <span class="syntax-number">2</span>
+
+<span class="syntax-comment">-- Storage for ESP objects</span>
+<span class="syntax-keyword">local</span> espObjects = {}
+
+<span class="syntax-comment">-- Create ESP Box</span>
+<span class="syntax-keyword">local</span> <span class="syntax-function">function</span> createESPBox(player)
+    <span class="syntax-keyword">if</span> player == LocalPlayer <span class="syntax-keyword">then</span> <span class="syntax-keyword">return</span> <span class="syntax-keyword">end</span>
+    
+    <span class="syntax-keyword">local</span> espBox = {}
+    
+    <span class="syntax-comment">-- Main box frame</span>
+    <span class="syntax-keyword">local</span> box = Instance.new(<span class="syntax-string">"Frame"</span>)
+    box.Name = <span class="syntax-string">"ESPBox_"</span> .. player.Name
+    box.BackgroundTransparency = ESP_TRANSPARENCY
+    box.BackgroundColor3 = ESP_COLOR
+    box.BorderSizePixel = <span class="syntax-number">2</span>
+    box.BorderColor3 = ESP_COLOR
+    box.Size = UDim2.new(<span class="syntax-number">0</span>, <span class="syntax-number">100</span>, <span class="syntax-number">0</span>, <span class="syntax-number">100</span>)
+    box.Parent = LocalPlayer.PlayerGui.CoreGui
+    
+    <span class="syntax-comment">-- Glow effect</span>
+    <span class="syntax-keyword">local</span> glow = Instance.new(<span class="syntax-string">"ImageLabel"</span>)
+    glow.Name = <span class="syntax-string">"Glow"</span>
+    glow.BackgroundTransparency = <span class="syntax-number">1</span>
+    glow.Image = <span class="syntax-string">"rbxasset://textures/ui/Glow.png"</span>
+    glow.ImageColor3 = ESP_COLOR
+    glow.ImageTransparency = <span class="syntax-number">0.3</span>
+    glow.Size = UDim2.new(<span class="syntax-number">1</span>, <span class="syntax-number">20</span>, <span class="syntax-number">1</span>, <span class="syntax-number">20</span>)
+    glow.Position = UDim2.new(<span class="syntax-number">0</span>, <span class="syntax-number">-10</span>, <span class="syntax-number">0</span>, <span class="syntax-number">-10</span>)
+    glow.Parent = box
+    
+    <span class="syntax-comment">-- Player name label</span>
+    <span class="syntax-keyword">local</span> nameLabel = Instance.new(<span class="syntax-string">"TextLabel"</span>)
+    nameLabel.Name = <span class="syntax-string">"NameLabel"</span>
+    nameLabel.BackgroundTransparency = <span class="syntax-number">1</span>
+    nameLabel.Size = UDim2.new(<span class="syntax-number">1</span>, <span class="syntax-number">0</span>, <span class="syntax-number">0</span>, <span class="syntax-number">20</span>)
+    nameLabel.Position = UDim2.new(<span class="syntax-number">0</span>, <span class="syntax-number">0</span>, <span class="syntax-number">0</span>, <span class="syntax-number">-25</span>)
+    nameLabel.Text = player.Name
+    nameLabel.TextColor3 = ESP_COLOR
+    nameLabel.TextStrokeTransparency = <span class="syntax-number">0</span>
+    nameLabel.TextStrokeColor3 = Color3.new(<span class="syntax-number">0</span>, <span class="syntax-number">0</span>, <span class="syntax-number">0</span>)
+    nameLabel.Font = Enum.Font.SourceSansBold
+    nameLabel.TextSize = <span class="syntax-number">14</span>
+    nameLabel.Parent = box
+    
+    <span class="syntax-comment">-- Distance label</span>
+    <span class="syntax-keyword">local</span> distanceLabel = Instance.new(<span class="syntax-string">"TextLabel"</span>)
+    distanceLabel.Name = <span class="syntax-string">"DistanceLabel"</span>
+    distanceLabel.BackgroundTransparency = <span class="syntax-number">1</span>
+    distanceLabel.Size = UDim2.new(<span class="syntax-number">1</span>, <span class="syntax-number">0</span>, <span class="syntax-number">0</span>, <span class="syntax-number">20</span>)
+    distanceLabel.Position = UDim2.new(<span class="syntax-number">0</span>, <span class="syntax-number">0</span>, <span class="syntax-number">1</span>, <span class="syntax-number">5</span>)
+    distanceLabel.Text = <span class="syntax-string">"0m"</span>
+    distanceLabel.TextColor3 = ESP_COLOR
+    distanceLabel.TextStrokeTransparency = <span class="syntax-number">0</span>
+    distanceLabel.TextStrokeColor3 = Color3.new(<span class="syntax-number">0</span>, <span class="syntax-number">0</span>, <span class="syntax-number">0</span>)
+    distanceLabel.Font = Enum.Font.SourceSans
+    distanceLabel.TextSize = <span class="syntax-number">12</span>
+    distanceLabel.Parent = box
+    
+    espBox.box = box
+    espBox.glow = glow
+    espBox.nameLabel = nameLabel
+    espBox.distanceLabel = distanceLabel
+    espBox.player = player
+    
+    <span class="syntax-keyword">return</span> espBox
+<span class="syntax-keyword">end</span>
+
+<span class="syntax-comment">-- Apply X-Ray effect</span>
+<span class="syntax-keyword">local</span> <span class="syntax-function">function</span> applyXRay(character)
+    <span class="syntax-keyword">for</span> _, part <span class="syntax-keyword">in</span> pairs(character:GetChildren()) <span class="syntax-keyword">do</span>
+        <span class="syntax-keyword">if</span> part:IsA(<span class="syntax-string">"BasePart"</span>) <span class="syntax-keyword">then</span>
+            part.Transparency = <span class="syntax-number">0.5</span>
+            part.CanCollide = <span class="syntax-keyword">false</span>
+            
+            <span class="syntax-comment">-- Add golden outline</span>
+            <span class="syntax-keyword">local</span> selectionBox = Instance.new(<span class="syntax-string">"SelectionBox"</span>)
+            selectionBox.Adornee = part
+            selectionBox.Color3 = ESP_COLOR
+            selectionBox.LineThickness = <span class="syntax-number">0.2</span>
+            selectionBox.Transparency = <span class="syntax-number">0.3</span>
+            selectionBox.Parent = part
+        <span class="syntax-keyword">end</span>
+    <span class="syntax-keyword">end</span>
+<span class="syntax-keyword">end</span>
+
+<span class="syntax-comment">-- Remove X-Ray effect</span>
+<span class="syntax-keyword">local</span> <span class="syntax-function">function</span> removeXRay(character)
+    <span class="syntax-keyword">for</span> _, part <span class="syntax-keyword">in</span> pairs(character:GetChildren()) <span class="syntax-keyword">do</span>
+        <span class="syntax-keyword">if</span> part:IsA(<span class="syntax-string">"BasePart"</span>) <span class="syntax-keyword">then</span>
+            part.Transparency = <span class="syntax-number">0</span>
+            part.CanCollide = <span class="syntax-keyword">true</span>
+            
+            <span class="syntax-keyword">local</span> selectionBox = part:FindFirstChild(<span class="syntax-string">"SelectionBox"</span>)
+            <span class="syntax-keyword">if</span> selectionBox <span class="syntax-keyword">then</span>
+                selectionBox:Destroy()
+            <span class="syntax-keyword">end</span>
+        <span class="syntax-keyword">end</span>
+    <span class="syntax-keyword">end</span>
+<span class="syntax-keyword">end</span>
+
+<span class="syntax-comment">-- Update ESP positions</span>
+<span class="syntax-keyword">local</span> <span class="syntax-function">function</span> updateESP()
+    <span class="syntax-keyword">for</span> _, espData <span class="syntax-keyword">in</span> pairs(espObjects) <span class="syntax-keyword">do</span>
+        <span class="syntax-keyword">local</span> player = espData.player
+        <span class="syntax-keyword">local</span> character = player.Character
+        
+        <span class="syntax-keyword">if</span> character <span class="syntax-keyword">and</span> character:FindFirstChild(<span class="syntax-string">"HumanoidRootPart"</span>) <span class="syntax-keyword">then</span>
+            <span class="syntax-keyword">local</span> rootPart = character.HumanoidRootPart
+            <span class="syntax-keyword">local</span> vector, onScreen = Camera:WorldToViewportPoint(rootPart.Position)
+            
+            <span class="syntax-keyword">if</span> onScreen <span class="syntax-keyword">then</span>
+                <span class="syntax-comment">-- Calculate distance</span>
+                <span class="syntax-keyword">local</span> distance = math.floor((LocalPlayer.Character.HumanoidRootPart.Position - rootPart.Position).Magnitude)
+                
+                <span class="syntax-comment">-- Update ESP box position and size</span>
+                <span class="syntax-keyword">local</span> size = math.max(<span class="syntax-number">50</span>, <span class="syntax-number">1000</span> / distance)
+                espData.box.Size = UDim2.new(<span class="syntax-number">0</span>, size, <span class="syntax-number">0</span>, size * <span class="syntax-number">1.5</span>)
+                espData.box.Position = UDim2.new(<span class="syntax-number">0</span>, vector.X - size/<span class="syntax-number">2</span>, <span class="syntax-number">0</span>, vector.Y - size * <span class="syntax-number">0.75</span>)
+                espData.box.Visible = <span class="syntax-keyword">true</span>
+                
+                <span class="syntax-comment">-- Update distance label</span>
+                espData.distanceLabel.Text = distance .. <span class="syntax-string">"m"</span>
+                
+                <span class="syntax-comment">-- Animate glow effect</span>
+                <span class="syntax-keyword">local</span> glowTween = math.sin(tick() * <span class="syntax-number">3</span>) * <span class="syntax-number">0.2</span> + <span class="syntax-number">0.5</span>
+                espData.glow.ImageTransparency = glowTween
+            <span class="syntax-keyword">else</span>
+                espData.box.Visible = <span class="syntax-keyword">false</span>
+            <span class="syntax-keyword">end</span>
+        <span class="syntax-keyword">else</span>
+            espData.box.Visible = <span class="syntax-keyword">false</span>
+        <span class="syntax-keyword">end</span>
+    <span class="syntax-keyword">end</span>
+<span class="syntax-keyword">end</span>
+
+<span class="syntax-comment">-- Handle new players</span>
+<span class="syntax-keyword">local</span> <span class="syntax-function">function</span> onPlayerAdded(player)
+    <span class="syntax-keyword">if</span> player == LocalPlayer <span class="syntax-keyword">then</span> <span class="syntax-keyword">return</span> <span class="syntax-keyword">end</span>
+    
+    <span class="syntax-comment">-- Create ESP</span>
+    <span class="syntax-keyword">if</span> ESP_ENABLED <span class="syntax-keyword">then</span>
+        espObjects[player] = createESPBox(player)
+    <span class="syntax-keyword">end</span>
+    
+    <span class="syntax-comment">-- Handle character spawning</span>
+    player.CharacterAdded:Connect(<span class="syntax-function">function</span>(character)
+        <span class="syntax-keyword">if</span> XRAY_ENABLED <span class="syntax-keyword">then</span>
+            character.ChildAdded:Connect(<span class="syntax-function">function</span>(child)
+                <span class="syntax-keyword">if</span> child:IsA(<span class="syntax-string">"BasePart"</span>) <span class="syntax-keyword">then</span>
+                    wait(<span class="syntax-number">0.1</span>)
+                    applyXRay(character)
+                <span class="syntax-keyword">end</span>
+            <span class="syntax-keyword">end</span>)
+            wait(<span class="syntax-number">1</span>)
+            applyXRay(character)
+        <span class="syntax-keyword">end</span>
+    <span class="syntax-keyword">end</span>)
+<span class="syntax-keyword">end</span>
+
+<span class="syntax-comment">-- Handle player leaving</span>
+<span class="syntax-keyword">local</span> <span class="syntax-function">function</span> onPlayerRemoving(player)
+    <span class="syntax-keyword">if</span> espObjects[player] <span class="syntax-keyword">then</span>
+        espObjects[player].box:Destroy()
+        espObjects[player] = <span class="syntax-keyword">nil</span>
+    <span class="syntax-keyword">end</span>
+<span class="syntax-keyword">end</span>
+
+<span class="syntax-comment">-- Toggle functions</span>
+<span class="syntax-keyword">local</span> <span class="syntax-function">function</span> toggleESP()
+    ESP_ENABLED = <span class="syntax-keyword">not</span> ESP_ENABLED
+    <span class="syntax-keyword">for</span> _, espData <span class="syntax-keyword">in</span> pairs(espObjects) <span class="syntax-keyword">do</span>
+        espData.box.Visible = ESP_ENABLED
+    <span class="syntax-keyword">end</span>
+    print(<span class="syntax-string">"ESP "</span> .. (ESP_ENABLED <span class="syntax-keyword">and</span> <span class="syntax-string">"Enabled"</span> <span class="syntax-keyword">or</span> <span class="syntax-string">"Disabled"</span>))
+<span class="syntax-keyword">end</span>
+
+<span class="syntax-keyword">local</span> <span class="syntax-function">function</span> toggleXRay()
+    XRAY_ENABLED = <span class="syntax-keyword">not</span> XRAY_ENABLED
+    <span class="syntax-keyword">for</span> _, player <span class="syntax-keyword">in</span> pairs(Players:GetPlayers()) <span class="syntax-keyword">do</span>
+        <span class="syntax-keyword">if</span> player.Character <span class="syntax-keyword">and</span> player ~= LocalPlayer <span class="syntax-keyword">then</span>
+            <span class="syntax-keyword">if</span> XRAY_ENABLED <span class="syntax-keyword">then</span>
+                applyXRay(player.Character)
+            <span class="syntax-keyword">else</span>
+                removeXRay(player.Character)
+            <span class="syntax-keyword">end</span>
+        <span class="syntax-keyword">end</span>
+    <span class="syntax-keyword">end</span>
+    print(<span class="syntax-string">"X-Ray "</span> .. (XRAY_ENABLED <span class="syntax-keyword">and</span> <span class="syntax-string">"Enabled"</span> <span class="syntax-keyword">or</span> <span class="syntax-string">"Disabled"</span>))
+<span class="syntax-keyword">end</span>
+
+<span class="syntax-comment">-- Key bindings</span>
+UserInputService.InputBegan:Connect(<span class="syntax-function">function</span>(input, gameProcessed)
+    <span class="syntax-keyword">if</span> gameProcessed <span class="syntax-keyword">then</span> <span class="syntax-keyword">return</span> <span class="syntax-keyword">end</span>
+    
+    <span class="syntax-keyword">if</span> input.KeyCode == Enum.KeyCode.F1 <span class="syntax-keyword">then</span>
+        toggleESP()
+    <span class="syntax-keyword">elseif</span> input.KeyCode == Enum.KeyCode.F2 <span class="syntax-keyword">then</span>
+        toggleXRay()
+    <span class="syntax-keyword">end</span>
+<span class="syntax-keyword">end</span>)
+
+<span class="syntax-comment">-- Initialize</span>
+<span class="syntax-keyword">for</span> _, player <span class="syntax-keyword">in</span> pairs(Players:GetPlayers()) <span class="syntax-keyword">do</span>
+    onPlayerAdded(player)
+<span class="syntax-keyword">end</span>
+
+Players.PlayerAdded:Connect(onPlayerAdded)
+Players.PlayerRemoving:Connect(onPlayerRemoving)
+
+<span class="syntax-comment">-- Main update loop</span>
+RunService.Heartbeat:Connect(updateESP)
+
+print(<span class="syntax-string">"Golden ESP X-Ray Script Loaded!"</span>)
+print(<span class="syntax-string">"Press F1 to toggle ESP"</span>)
+print(<span class="syntax-string">"Press F2 to toggle X-Ray"</span>)</code></pre>
+            </div>
+        </div>
+
+        <!-- Usage Instructions -->
+        <div class="mt-8 bg-gray-800 rounded-lg p-6 border border-gray-700">
+            <h3 class="text-xl font-bold mb-4 text-yellow-400">
+                <i class="fas fa-info-circle mr-2"></i>Usage Instructions
+            </h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="font-semibold mb-2 text-gray-200">Installation:</h4>
+                    <ol class="text-gray-300 text-sm space-y-1 list-decimal list-inside">
+                        <li>Copy the script above</li>
+                        <li>Open your Roblox executor</li>
+                        <li>Paste and execute the script</li>
+                        <li>The ESP will automatically activate</li>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox X-Ray ESP Script with Golden Glow</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .code-container {
+            font-family: 'JetBrains Mono', monospace;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+        .golden-glow {
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5), 0 0 40px rgba(255, 215, 0, 0.3);
+        }
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(255, 215, 0, 0.3);
+        }
+        pre {
+            scrollbar-width: thin;
+            scrollbar-color: #ffd700 #2d3748;
+        }
+        pre::-webkit-scrollbar {
+            width: 8px;
+        }
+        pre::-webkit-scrollbar-track {
+            background: #2d3748;
+        }
+        pre::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #ffd700, #ffed4e);
+            border-radius: 4px;
+        }
+        .syntax-keyword { color: #ff79c6; }
+        .syntax-string { color: #f1fa8c; }
+        .syntax-comment { color: #6272a4; font-style: italic; }
+        .syntax-function { color: #50fa7b; }
+        .syntax-number { color: #bd93f9; }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-yellow-600 bg-clip-text text-transparent">
+                <i class="fas fa-eye mr-3"></i>Roblox X-Ray ESP Script
+            </h1>
+            <p class="text-gray-300 text-lg">Golden Glowing ESP with X-Ray Vision</p>
+            <div class="mt-4 flex justify-center space-x-4">
+                <span class="px-3 py-1 bg-yellow-600 rounded-full text-sm font-medium">
+                    <i class="fas fa-search-plus mr-1"></i>X-Ray Vision
+                </span>
+                <span class="px-3 py-1 bg-yellow-600 rounded-full text-sm font-medium">
+                    <i class="fas fa-users mr-1"></i>ESP Functionality
+                </span>
+                <span class="px-3 py-1 bg-yellow-600 rounded-full text-sm font-medium">
+                    <i class="fas fa-star mr-1"></i>Golden Glow
+                </span>
+            </div>
+        </div>
+
+        <!-- Warning Notice -->
+        <div class="bg-red-900 border border-red-700 rounded-lg p-4 mb-6">
+            <div class="flex items-center">
+                <i class="fas fa-exclamation-triangle text-red-400 mr-3"></i>
+                <div>
+                    <h3 class="font-bold text-red-300">Important Notice</h3>
+                    <p class="text-red-200 text-sm mt-1">This script is for educational purposes only. Using exploits in Roblox may result in account termination. Use at your own risk and respect game rules.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="grid md:grid-cols-3 gap-6 mb-8">
+            <div class="bg-gray-800 rounded-lg p-6 border border-yellow-600 golden-glow">
+                <i class="fas fa-eye text-yellow-400 text-2xl mb-3"></i>
+                <h3 class="text-xl font-bold mb-2 text-yellow-400">X-Ray Vision</h3>
+                <p class="text-gray-300">See players through walls and obstacles with transparency effects</p>
+            </div>
+            <div class="bg-gray-800 rounded-lg p-6 border border-yellow-600 golden-glow">
+                <i class="fas fa-crosshairs text-yellow-400 text-2xl mb-3"></i>
+                <h3 class="text-xl font-bold mb-2 text-yellow-400">ESP Boxes</h3>
+                <p class="text-gray-300">Highlight players with golden glowing boxes and distance indicators</p>
+            </div>
+            <div class="bg-gray-800 rounded-lg p-6 border border-yellow-600 golden-glow">
+                <i class="fas fa-cog text-yellow-400 text-2xl mb-3"></i>
+                <h3 class="text-xl font-bold mb-2 text-yellow-400">Customizable</h3>
+                <p class="text-gray-300">Toggle features on/off and adjust colors and transparency</p>
+            </div>
+        </div>
+
+        <!-- Script Container -->
+        <div class="bg-gray-800 rounded-lg border border-yellow-600 golden-glow overflow-hidden">
+            <div class="bg-gradient-to-r from-yellow-600 to-yellow-700 px-6 py-4 flex justify-between items-center">
+                <div class="flex items-center">
+                    <i class="fas fa-code text-white mr-3"></i>
+                    <h2 class="text-xl font-bold text-white">Roblox X-Ray ESP Script</h2>
+                </div>
+                <button id="copyBtn" class="copy-btn bg-white text-yellow-700 px-4 py-2 rounded-lg font-medium transition-all duration-300 hover:bg-yellow-100">
+                    <i class="fas fa-copy mr-2"></i>Copy Script
+                </button>
+            </div>
+            
+            <div class="code-container p-6">
+                <pre id="scriptCode" class="text-sm leading-relaxed overflow-x-auto"><code>-- Roblox X-Ray ESP Script with Golden Glow
+-- Created for educational purposes only
+
+<span class="syntax-keyword">local</span> Players = game:GetService(<span class="syntax-string">"Players"</span>)
+<span class="syntax-keyword">local</span> RunService = game:GetService(<span class="syntax-string">"RunService"</span>)
+<span class="syntax-keyword">local</span> UserInputService = game:GetService(<span class="syntax-string">"UserInputService"</span>)
+
+<span class="syntax-keyword">local</span> LocalPlayer = Players.LocalPlayer
+<span class="syntax-keyword">local</span> Camera = workspace.CurrentCamera
+
+<span class="syntax-comment">-- Configuration</span>
+<span class="syntax-keyword">local</span> ESP_ENABLED = <span class="syntax-keyword">true</span>
+<span class="syntax-keyword">local</span> XRAY_ENABLED = <span class="syntax-keyword">true</span>
+<span class="syntax-keyword">local</span> ESP_COLOR = Color3.fromRGB(<span class="syntax-number">255</span>, <span class="syntax-number">215</span>, <span class="syntax-number">0</span>) <span class="syntax-comment">-- Golden color</span>
+<span class="syntax-keyword">local</span> ESP_TRANSPARENCY = <span class="syntax-number">0.7</span>
+<span class="syntax-keyword">local</span> GLOW_INTENSITY = <span class="syntax-number">2</span>
+
+<span class="syntax-comment">-- Storage for ESP objects</span>
+<span class="syntax-keyword">local</span> espObjects = {}
+
+<span class="syntax-comment">-- Create ESP Box</span>
+<span class="syntax-keyword">local</span> <span class="syntax-function">function</span> createESPBox(player)
+    <span class="syntax-keyword">if</span> player == LocalPlayer <span class="syntax-keyword">then</span> <span class="syntax-keyword">return</span> <span class="syntax-keyword">end</span>
+    
+    <span class="syntax-keyword">local</span> espBox = {}
+    
+    <span class="syntax-comment">-- Main box frame</span>
+    <span class="syntax-keyword">local</span> box = Instance.new(<span class="syntax-string">"Frame"</span>)
+    box.Name = <span class="syntax-string">"ESPBox_"</span> .. player.Name
+    box.BackgroundTransparency = ESP_TRANSPARENCY
+    box.BackgroundColor3 = ESP_COLOR
+    box.BorderSizePixel = <span class="syntax-number">2</span>
+    box.BorderColor3 = ESP_COLOR
+    box.Size = UDim2.new(<span class="syntax-number">0</span>, <span class="syntax-number">100</span>, <span class="syntax-number">0</span>, <span class="syntax-number">100</span>)
+    box.Parent = LocalPlayer.PlayerGui.CoreGui
+    
+    <span class="syntax-comment">-- Glow effect</span>
+    <span class="syntax-keyword">local</span> glow = Instance.new(<span class="syntax-string">"ImageLabel"</span>)
+    glow.Name = <span class="syntax-string">"Glow"</span>
+    glow.BackgroundTransparency = <span class="syntax-number">1</span>
+    glow.Image = <span class="syntax-string">"rbxasset://textures/ui/Glow.png"</span>
+    glow.ImageColor3 = ESP_COLOR
+    glow.ImageTransparency = <span class="syntax-number">0.3</span>
+    glow.Size = UDim2.new(<span class="syntax-number">1</span>, <span class="syntax-number">20</span>, <span class="syntax-number">1</span>, <span class="syntax-number">20</span>)
+    glow.Position = UDim2.new(<span class="syntax-number">0</span>, <span class="syntax-number">-10</span>, <span class="syntax-number">0</span>, <span class="syntax-number">-10</span>)
+    glow.Parent = box
+    
+    <span class="syntax-comment">-- Player name label</span>
+    <span class="syntax-keyword">local</span> nameLabel = Instance.new(<span class="syntax-string">"TextLabel"</span>)
+    nameLabel.Name = <span class="syntax-string">"NameLabel"</span>
+    nameLabel.BackgroundTransparency = <span class="syntax-number">1</span>
+    nameLabel.Size = UDim2.new(<span class="syntax-number">1</span>, <span class="syntax-number">0</span>, <span class="syntax-number">0</span>, <span class="syntax-number">20</span>)
+    nameLabel.Position = UDim2.new(<span class="syntax-number">0</span>, <span class="syntax-number">0</span>, <span class="syntax-number">0</span>, <span class="syntax-number">-25</span>)
+    nameLabel.Text = player.Name
+    nameLabel.TextColor3 = ESP_COLOR
+    nameLabel.TextStrokeTransparency = <span class="syntax-number">0</span>
+    nameLabel.TextStrokeColor3 = Color3.new(<span class="syntax-number">0</span>, <span class="syntax-number">0</span>, <span class="syntax-number">0</span>)
+    nameLabel.Font = Enum.Font.SourceSansBold
+    nameLabel.TextSize = <span class="syntax-number">14</span>
+    nameLabel.Parent = box
+    
+    <span class="syntax-comment">-- Distance label</span>
+    <span class="syntax-keyword">local</span> distanceLabel = Instance.new(<span class="syntax-string">"TextLabel"</span>)
+    distanceLabel.Name = <span class="syntax-string">"DistanceLabel"</span>
+    distanceLabel.BackgroundTransparency = <span class="syntax-number">1</span>
+    distanceLabel.Size = UDim2.new(<span class="syntax-number">1</span>, <span class="syntax-number">0</span>, <span class="syntax-number">0</span>, <span class="syntax-number">20</span>)
+    distanceLabel.Position = UDim2.new(<span class="syntax-number">0</span>, <span class="syntax-number">0</span>, <span class="syntax-number">1</span>, <span class="syntax-number">5</span>)
+    distanceLabel.Text = <span class="syntax-string">"0m"</span>
+    distanceLabel.TextColor3 = ESP_COLOR
+    distanceLabel.TextStrokeTransparency = <span class="syntax-number">0</span>
+    distanceLabel.TextStrokeColor3 = Color3.new(<span class="syntax-number">0</span>, <span class="syntax-number">0</span>, <span class="syntax-number">0</span>)
+    distanceLabel.Font = Enum.Font.SourceSans
+    distanceLabel.TextSize = <span class="syntax-number">12</span>
+    distanceLabel.Parent = box
+    
+    espBox.box = box
+    espBox.glow = glow
+    espBox.nameLabel = nameLabel
+    espBox.distanceLabel = distanceLabel
+    espBox.player = player
+    
+    <span class="syntax-keyword">return</span> espBox
+<span class="syntax-keyword">end</span>
+
+<span class="syntax-comment">-- Apply X-Ray effect</span>
+<span class="syntax-keyword">local</span> <span class="syntax-function">function</span> applyXRay(character)
+    <span class="syntax-keyword">for</span> _, part <span class="syntax-keyword">in</span> pairs(character:GetChildren()) <span class="syntax-keyword">do</span>
+        <span class="syntax-keyword">if</span> part:IsA(<span class="syntax-string">"BasePart"</span>) <span class="syntax-keyword">then</span>
+            part.Transparency = <span class="syntax-number">0.5</span>
+            part.CanCollide = <span class="syntax-keyword">false</span>
+            
+            <span class="syntax-comment">-- Add golden outline</span>
+            <span class="syntax-keyword">local</span> selectionBox = Instance.new(<span class="syntax-string">"SelectionBox"</span>)
+            selectionBox.Adornee = part
+            selectionBox.Color3 = ESP_COLOR
+            selectionBox.LineThickness = <span class="syntax-number">0.2</span>
+            selectionBox.Transparency = <span class="syntax-number">0.3</span>
+            selectionBox.Parent = part
+        <span class="syntax-keyword">end</span>
+    <span class="syntax-keyword">end</span>
+<span class="syntax-keyword">end</span>
+
+<span class="syntax-comment">-- Remove X-Ray effect</span>
+<span class="syntax-keyword">local</span> <span class="syntax-function">function</span> removeXRay(character)
+    <span class="syntax-keyword">for</span> _, part <span class="syntax-keyword">in</span> pairs(character:GetChildren()) <span class="syntax-keyword">do</span>
+        <span class="syntax-keyword">if</span> part:IsA(<span class="syntax-string">"BasePart"</span>) <span class="syntax-keyword">then</span>
+            part.Transparency = <span class="syntax-number">0</span>
+            part.CanCollide = <span class="syntax-keyword">true</span>
+            
+            <span class="syntax-keyword">local</span> selectionBox = part:FindFirstChild(<span class="syntax-string">"SelectionBox"</span>)
+            <span class="syntax-keyword">if</span> selectionBox <span class="syntax-keyword">then</span>
+                selectionBox:Destroy()
+            <span class="syntax-keyword">end</span>
+        <span class="syntax-keyword">end</span>
+    <span class="syntax-keyword">end</span>
+<span class="syntax-keyword">end</span>
+
+<span class="syntax-comment">-- Update ESP positions</span>
+<span class="syntax-keyword">local</span> <span class="syntax-function">function</span> updateESP()
+    <span class="syntax-keyword">for</span> _, espData <span class="syntax-keyword">in</span> pairs(espObjects) <span class="syntax-keyword">do</span>
+        <span class="syntax-keyword">local</span> player = espData.player
+        <span class="syntax-keyword">local</span> character = player.Character
+        
+        <span class="syntax-keyword">if</span> character <span class="syntax-keyword">and</span> character:FindFirstChild(<span class="syntax-string">"HumanoidRootPart"</span>) <span class="syntax-keyword">then</span>
+            <span class="syntax-keyword">local</span> rootPart = character.HumanoidRootPart
+            <span class="syntax-keyword">local</span> vector, onScreen = Camera:WorldToViewportPoint(rootPart.Position)
+            
+            <span class="syntax-keyword">if</span> onScreen <span class="syntax-keyword">then</span>
+                <span class="syntax-comment">-- Calculate distance</span>
+                <span class="syntax-keyword">local</span> distance = math.floor((LocalPlayer.Character.HumanoidRootPart.Position - rootPart.Position).Magnitude)
+                
+                <span class="syntax-comment">-- Update ESP box position and size</span>
+                <span class="syntax-keyword">local</span> size = math.max(<span class="syntax-number">50</span>, <span class="syntax-number">1000</span> / distance)
+                espData.box.Size = UDim2.new(<span class="syntax-number">0</span>, size, <span class="syntax-number">0</span>, size * <span class="syntax-number">1.5</span>)
+                espData.box.Position = UDim2.new(<span class="syntax-number">0</span>, vector.X - size/<span class="syntax-number">2</span>, <span class="syntax-number">0</span>, vector.Y - size * <span class="syntax-number">0.75</span>)
+                espData.box.Visible = <span class="syntax-keyword">true</span>
+                
+                <span class="syntax-comment">-- Update distance label</span>
+                espData.distanceLabel.Text = distance .. <span class="syntax-string">"m"</span>
+                
+                <span class="syntax-comment">-- Animate glow effect</span>
+                <span class="syntax-keyword">local</span> glowTween = math.sin(tick() * <span class="syntax-number">3</span>) * <span class="syntax-number">0.2</span> + <span class="syntax-number">0.5</span>
+                espData.glow.ImageTransparency = glowTween
+            <span class="syntax-keyword">else</span>
+                espData.box.Visible = <span class="syntax-keyword">false</span>
+            <span class="syntax-keyword">end</span>
+        <span class="syntax-keyword">else</span>
+            espData.box.Visible = <span class="syntax-keyword">false</span>
+        <span class="syntax-keyword">end</span>
+    <span class="syntax-keyword">end</span>
+<span class="syntax-keyword">end</span>
+
+<span class="syntax-comment">-- Handle new players</span>
+<span class="syntax-keyword">local</span> <span class="syntax-function">function</span> onPlayerAdded(player)
+    <span class="syntax-keyword">if</span> player == LocalPlayer <span class="syntax-keyword">then</span> <span class="syntax-keyword">return</span> <span class="syntax-keyword">end</span>
+    
+    <span class="syntax-comment">-- Create ESP</span>
+    <span class="syntax-keyword">if</span> ESP_ENABLED <span class="syntax-keyword">then</span>
+        espObjects[player] = createESPBox(player)
+    <span class="syntax-keyword">end</span>
+    
+    <span class="syntax-comment">-- Handle character spawning</span>
+    player.CharacterAdded:Connect(<span class="syntax-function">function</span>(character)
+        <span class="syntax-keyword">if</span> XRAY_ENABLED <span class="syntax-keyword">then</span>
+            character.ChildAdded:Connect(<span class="syntax-function">function</span>(child)
+                <span class="syntax-keyword">if</span> child:IsA(<span class="syntax-string">"BasePart"</span>) <span class="syntax-keyword">then</span>
+                    wait(<span class="syntax-number">0.1</span>)
+                    applyXRay(character)
+                <span class="syntax-keyword">end</span>
+            <span class="syntax-keyword">end</span>)
+            wait(<span class="syntax-number">1</span>)
+            applyXRay(character)
+        <span class="syntax-keyword">end</span>
+    <span class="syntax-keyword">end</span>)
+<span class="syntax-keyword">end</span>
+
+<span class="syntax-comment">-- Handle player leaving</span>
+<span class="syntax-keyword">local</span> <span class="syntax-function">function</span> onPlayerRemoving(player)
+    <span class="syntax-keyword">if</span> espObjects[player] <span class="syntax-keyword">then</span>
+        espObjects[player].box:Destroy()
+        espObjects[player] = <span class="syntax-keyword">nil</span>
+    <span class="syntax-keyword">end</span>
+<span class="syntax-keyword">end</span>
+
+<span class="syntax-comment">-- Toggle functions</span>
+<span class="syntax-keyword">local</span> <span class="syntax-function">function</span> toggleESP()
+    ESP_ENABLED = <span class="syntax-keyword">not</span> ESP_ENABLED
+    <span class="syntax-keyword">for</span> _, espData <span class="syntax-keyword">in</span> pairs(espObjects) <span class="syntax-keyword">do</span>
+        espData.box.Visible = ESP_ENABLED
+    <span class="syntax-keyword">end</span>
+    print(<span class="syntax-string">"ESP "</span> .. (ESP_ENABLED <span class="syntax-keyword">and</span> <span class="syntax-string">"Enabled"</span> <span class="syntax-keyword">or</span> <span class="syntax-string">"Disabled"</span>))
+<span class="syntax-keyword">end</span>
+
+<span class="syntax-keyword">local</span> <span class="syntax-function">function</span> toggleXRay()
+    XRAY_ENABLED = <span class="syntax-keyword">not</span> XRAY_ENABLED
+    <span class="syntax-keyword">for</span> _, player <span class="syntax-keyword">in</span> pairs(Players:GetPlayers()) <span class="syntax-keyword">do</span>
+        <span class="syntax-keyword">if</span> player.Character <span class="syntax-keyword">and</span> player ~= LocalPlayer <span class="syntax-keyword">then</span>
+            <span class="syntax-keyword">if</span> XRAY_ENABLED <span class="syntax-keyword">then</span>
+                applyXRay(player.Character)
+            <span class="syntax-keyword">else</span>
+                removeXRay(player.Character)
+            <span class="syntax-keyword">end</span>
+        <span class="syntax-keyword">end</span>
+    <span class="syntax-keyword">end</span>
+    print(<span class="syntax-string">"X-Ray "</span> .. (XRAY_ENABLED <span class="syntax-keyword">and</span> <span class="syntax-string">"Enabled"</span> <span class="syntax-keyword">or</span> <span class="syntax-string">"Disabled"</span>))
+<span class="syntax-keyword">end</span>
+
+<span class="syntax-comment">-- Key bindings</span>
+UserInputService.InputBegan:Connect(<span class="syntax-function">function</span>(input, gameProcessed)
+    <span class="syntax-keyword">if</span> gameProcessed <span class="syntax-keyword">then</span> <span class="syntax-keyword">return</span> <span class="syntax-keyword">end</span>
+    
+    <span class="syntax-keyword">if</span> input.KeyCode == Enum.KeyCode.F1 <span class="syntax-keyword">then</span>
+        toggleESP()
+    <span class="syntax-keyword">elseif</span> input.KeyCode == Enum.KeyCode.F2 <span class="syntax-keyword">then</span>
+        toggleXRay()
+    <span class="syntax-keyword">end</span>
+<span class="syntax-keyword">end</span>)
+
+<span class="syntax-comment">-- Initialize</span>
+<span class="syntax-keyword">for</span> _, player <span class="syntax-keyword">in</span> pairs(Players:GetPlayers()) <span class="syntax-keyword">do</span>
+    onPlayerAdded(player)
+<span class="syntax-keyword">end</span>
+
+Players.PlayerAdded:Connect(onPlayerAdded)
+Players.PlayerRemoving:Connect(onPlayerRemoving)
+
+<span class="syntax-comment">-- Main update loop</span>
+RunService.Heartbeat:Connect(updateESP)
+
+print(<span class="syntax-string">"Golden ESP X-Ray Script Loaded!"</span>)
+print(<span class="syntax-string">"Press F1 to toggle ESP"</span>)
+print(<span class="syntax-string">"Press F2 to toggle X-Ray"</span>)</code></pre>
+            </div>
+        </div>
+
+        <!-- Usage Instructions -->
+        <div class="mt-8 bg-gray-800 rounded-lg p-6 border border-gray-700">
+            <h3 class="text-xl font-bold mb-4 text-yellow-400">
+                <i class="fas fa-info-circle mr-2"></i>Usage Instructions
+            </h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div>
+                    <h4 class="font-semibold mb-2 text-gray-200">Installation:</h4>
+                    <ol class="text-gray-300 text-sm space-y-1 list-decimal list-inside">
+                        <li>Copy the script above</li>
+                        <li>Open your Roblox executor</li>
+                        <li>Paste and execute the script</li>
+                        <li>The ESP will automatically activate</li>
+                    </ol>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-2 text-gray-200">Controls:</h4>
+                    <ul class="text-gray-300 text-sm space-y-1">
+                        <li><kbd class="bg-gray-700 px-2 py-1 rounded text-xs">F1</kbd> - Toggle ESP On/Off</li>
+                        <li><kbd class="bg-gray-700 px-2 py-1 rounded text-xs">F2</kbd> - Toggle X-Ray On/Off</li>
+                        <li><span class="text-yellow-400">Golden boxes</span> highlight players</li>
+                        <li><span class="text-yellow-400">Distance indicators</span> show range</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features List -->
+        <div class="mt-6 bg-gray-800 rounded-lg p-6 border border-gray-700">
+            <h3 class="text-xl font-bold mb-4 text-yellow-400">
+                <i class="fas fa-list-ul mr-2"></i>Script Features
+            </h3>
+            <div class="grid md:grid-cols-2 gap-4">
+                <ul class="text-gray-300 text-sm space-y-2">
+                    <li><i class="fas fa-check text-green-400 mr-2"></i>Golden glowing ESP boxes</li>
+                    <li><i class="fas fa-check text-green-400 mr-2"></i>Player name display</li>
+                    <li><i class="fas fa-check text-green-400 mr-2"></i>Distance calculation</li>
+                    <li><i class="fas fa-check text-green-400 mr-2"></i>X-Ray vision through walls</li>
+                </ul>
+                <ul class="text-gray-300 text-sm space-y-2">
+                    <li><i class="fas fa-check text-green-400 mr-2"></i>Automatic player detection</li>
+                    <li><i class="fas fa-check text-green-400 mr-2"></i>Toggle functionality</li>
+                    <li><i class="fas fa-check text-green-400 mr-2"></i>Smooth animations</li>
+                    <li><i class="fas fa-check text-green-400 mr-2"></i>Performance optimized</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-8 text-center text-gray-400 text-sm">
+            <p>⚠️ Use responsibly and respect other players' gaming experience</p>
+            <p class="mt-2">Created for educational and testing purposes only</p>
+        </div>
+    </div>
+
+    <script>
+        // Copy to clipboard functionality
+        document.getElementById('copyBtn').addEventListener('click', function() {
+            const scriptCode = document.getElementById('scriptCode').textContent;
+            navigator.clipboard.writeText(scriptCode).then(function() {
+                const btn = document.getElementById('copyBtn');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check mr-2"></i>Copied!';
+                btn.classList.add('bg-green-500', 'text-white');
+                btn.classList.remove('bg-white', 'text-yellow-700');
+                
+                setTimeout(function() {
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('bg-green-500', 'text-white');
+                    btn.classList.add('bg-white', 'text-yellow-700');
+                }, 2000);
+            }).catch(function(err) {
+                console.error('Failed to copy: ', err);
+                alert('Failed to copy script. Please select and copy manually.');
+            });
+        });
+
+        // Add some interactive effects
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate glow effects
+            const glowElements = document.querySelectorAll('.golden-glow');
+            setInterval(function() {
+                glowElements.forEach(function(element) {
+                    const intensity = 0.3 + Math.sin(Date.now() / 1000) * 0.2;
+                    element.style.boxShadow = `0 0 20px rgba(255, 215, 0, ${intensity}), 0 0 40px rgba(255, 215, 0, ${intensity * 0.6})`;
+                });
+            }, 100);
+        });
+    </script>
+</body>
+</html>
+￼Enter                    </ol>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-2 text-gray-200">Controls:</h4>
+                    <ul class="text-gray-300 text-sm space-y-1">
+                        <li><kbd class="bg-gray-700 px-2 py-1 rounded text-xs">F1</kbd> - Toggle ESP On/Off</li>
+                        <li><kbd class="bg-gray-700 px-2 py-1 rounded text-xs">F2</kbd> - Toggle X-Ray On/Off</li>
+                        <li><span class="text-yellow-400">Golden boxes</span> highlight players</li>
+                        <li><span class="text-yellow-400">Distance indicators</span> show range</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features List -->
+        <div class="mt-6 bg-gray-800 rounded-lg p-6 border border-gray-700">
+            <h3 class="text-xl font-bold mb-4 text-yellow-400">
+                <i class="fas fa-list-ul mr-2"></i>Script Features
+            </h3>
+            <div class="grid md:grid-cols-2 gap-4">
+                <ul class="text-gray-300 text-sm space-y-2">
+                    <li><i class="fas fa-check text-green-400 mr-2"></i>Golden glowing ESP boxes</li>
+                    <li><i class="fas fa-check text-green-400 mr-2"></i>Player name display</li>
+                    <li><i class="fas fa-check text-green-400 mr-2"></i>Distance calculation</li>
+                    <li><i class="fas fa-check text-green-400 mr-2"></i>X-Ray vision through walls</li>
+                </ul>
+          <ul class="text-gray-300 text-sm space-y-2">
+                    <li><i class="fas fa-check text-green-400 mr-2"></i>Automatic player detection</li>
+                    <li><i class="fas fa-check text-green-400 mr-2"></i>Toggle functionality</li>
+                    <li><i class="fas fa-check text-green-400 mr-2"></i>Smooth animations</li>
+                    <li><i class="fas fa-check text-green-400 mr-2"></i>Performance optimized</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-8 text-center text-gray-400 text-sm">
+            <p>⚠️ Use responsibly and respect other players' gaming experience</p>
+            <p class="mt-2">Created for educational and testing purposes only</p>
+        </div>
+    </div>
+
+    <script>
+        // Copy to clipboard functionality
+        document.getElementById('copyBtn').addEventListener('click', function() {
+            const scriptCode = document.getElementById('scriptCode').textContent;
+            navigator.clipboard.writeText(scriptCode).then(function() {
+                const btn = document.getElementById('copyBtn');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check mr-2"></i>Copied!';
+                btn.classList.add('bg-green-500', 'text-white');
+                btn.classList.remove('bg-white', 'text-yellow-700');
